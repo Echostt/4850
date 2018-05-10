@@ -14,14 +14,14 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Head
+  - Wall
+  - Bullet
+  - AlienHead
+  - Floor
+  - Alien
+  - Upgrade
   - 
   - 
   - 
