@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed = 50.0f;
     public Rigidbody head;
     public LayerMask layerMask;
+    public Animator bodyAnimator;
     private CharacterController characterController;
     private Vector3 currentLookTarget = Vector3.zero;
 
@@ -25,9 +26,10 @@ public class PlayerController : MonoBehaviour {
             Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")
         );
         if (moveDirection == Vector3.zero) {
-            
+            bodyAnimator.SetBool("IsMoving", false);
         } else {
             head.AddForce(transform.right * 150, ForceMode.Acceleration);
+            bodyAnimator.SetBool("IsMoving", true);
         }
 
         RaycastHit hit;
