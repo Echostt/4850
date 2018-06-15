@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4000012952208826}
   - component: {fileID: 199000012254378820}
   - component: {fileID: 198000012941900604}
+  - component: {fileID: 114672244809529450}
   m_Layer: 14
   m_Name: MarineDeathParticles
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114672244809529450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014094683372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1f344df4f675c46a609d7c36259fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198000012941900604
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4606,8 +4618,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 159900389
-  m_SortingLayer: 0
+  m_SortingLayerID: -412283923
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 2

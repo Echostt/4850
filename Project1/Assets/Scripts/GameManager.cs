@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public GameObject upgradePrefab;
     public Gun gun;
     public float upgradeMaxTimeSpawn = 7.5f;
+    public GameObject deathFloor;
 
     private int aliensOnScreen = 0;
     private float generatedSpawnTime = 0;
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (player == null) {
+            return;
+        }
         currentUpgradeTime += Time.deltaTime;
 
         if (currentUpgradeTime > actualUpgradeTime) {
@@ -77,14 +81,22 @@ public class GameManager : MonoBehaviour {
 
                     Alien alienScript = newAlien.GetComponent<Alien>();
                     alienScript.target = player.transform;
+                    alienScript.GetdeathParticles().SetDeathFloor(deathFloor);
                     Vector3 targetRotation = new Vector3(
                         player.transform.position.x,
                         newAlien.transform.position.y,
                         player.transform.position.z
                      );
                     newAlien.transform.LookAt(targetRotation);
+                    alienScript.OnDestroy.AddListener(AlienDestroyed);
                 }
             }
         }
 	}
+
+    public void AlienDestroyed () {
+        aliensOnScreen -= 1;
+        totalAliens -= 1;
+    }
+
 }
