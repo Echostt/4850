@@ -1327,7 +1327,7 @@ SphereCollider:
   m_GameObject: {fileID: 1413021128647910}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.03
   m_Center: {x: 0, y: 0, z: 0.02}
@@ -1341,7 +1341,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.63
+  m_Radius: 2.52
   m_Center: {x: 0.34, y: 2.54, z: 0.57}
 --- !u!137 &137002252941922700
 SkinnedMeshRenderer:
