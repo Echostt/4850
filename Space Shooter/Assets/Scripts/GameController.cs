@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     public GameObject hazard;
+    public GameObject enemy;
     public Vector3 spawnValues;
     public int hazardCount;
     public float spawnWait;
     public float startWait;
     public float waveWait;
+    public bool enemyIsSpawned;
 
     public Text scoreText;
     public Text restartText;
@@ -43,6 +45,11 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(startWait);
         while (true) {
             for (int i = 0; i < hazardCount; ++i) {
+                if(Mathf.FloorToInt(Random.value * 10) < 3 && !enemyIsSpawned) {
+                    Vector3 spawnPositionEnemy = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                    Instantiate(enemy, spawnPositionEnemy, Quaternion.identity);
+                    enemyIsSpawned = true;
+                }
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
