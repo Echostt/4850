@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyByContact : MonoBehaviour {
     public GameObject explosion;
@@ -19,15 +17,16 @@ public class DestroyByContact : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Boundary"))
-            return;
-        Instantiate(explosion, transform.position, transform.rotation);
         if (other.CompareTag("Player")) {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.GameOver();
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }  else if (other.CompareTag("PlayerShot") || other.CompareTag("Asteroid")) {
+            Instantiate(explosion, transform.position, transform.rotation);
+            gameController.AddScore(scoreValue);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
-        gameController.AddScore(scoreValue);
-        Destroy(other.gameObject);
-        Destroy(gameObject);
     }
 }

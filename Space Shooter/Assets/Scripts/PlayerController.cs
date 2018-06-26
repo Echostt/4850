@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -24,7 +23,26 @@ public class PlayerController : MonoBehaviour {
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
             GetComponent<AudioSource>().Play();
         }
-        
+    }
+
+    private void OnTriggerEnter (Collider other) {
+        if (other.CompareTag("PowerUp")) {
+            StartCoroutine(givePowerUpShot(3, 0));
+        }
+    }
+
+    IEnumerator givePowerUpShot (int powerUpDuration, int powerUpSelection) {
+        switch (powerUpSelection) {
+            case 0: {
+                float powerUpStart = Time.time;
+                this.fireRate /= 50;
+                while (powerUpDuration > Time.time - powerUpStart) {
+                    yield return null;
+                }
+                this.fireRate *= 50;
+            } break;
+        } //end switch(powerUpSelection)
+
     }
 
     void FixedUpdate() {

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
@@ -14,26 +13,27 @@ public class EnemyController : MonoBehaviour {
     private void Start () {
         //get movement speed from Mover
         this.moveSpeedVertical = this.GetComponent<Mover>().speed;
+        this.moveSpeedHorizontal = this.moveSpeedVertical;
         //pick random direction to move first
         randDir = 1;
         if (Mathf.Round(Random.value) == 1)
             randDir *= -1;
-        Debug.Log(randDir);
         StartCoroutine(fireShot());
     }
 
+    private void OnDestroy () {
+        GameObject.FindWithTag("GameController").GetComponent<GameController>().enemyCount -= 1;
+    }
     private void Update () {
         //strafe
-        if (this.GetComponent<Rigidbody>().transform.position.x <= -6) {
+        if (this.GetComponent<Rigidbody>().transform.position.x <= -6 && this.moveSpeedHorizontal * randDir < 0) {
             //off the left
-            this.transform.Translate(12, 0, 0);
             this.moveSpeedHorizontal *= -1;
-        } else if (this.GetComponent<Rigidbody>().transform.position.x >= 6) {
+        } else if (this.GetComponent<Rigidbody>().transform.position.x >= 6 && this.moveSpeedHorizontal * randDir > 0) {
             //off the right
-            this.transform.Translate(-12, 0, 0);
             this.moveSpeedHorizontal *= -1;
         } else {
-            this.GetComponent<Rigidbody>().velocity.Set(moveSpeedHorizontal * randDir, 0, moveSpeedVertical);
+            this.GetComponent<Rigidbody>().velocity = new Vector3(moveSpeedHorizontal * randDir, 0, moveSpeedVertical);
         }        
     }
 
