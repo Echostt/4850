@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter (Collider other) {
         if (other.CompareTag("PowerUp")) {
             StartCoroutine(givePowerUpShot(3, 0));
+            Destroy(other.gameObject);
         }
     }
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,13 +41,18 @@ public class GameController : MonoBehaviour {
     void Update() {
         if (restart) {
             if (Input.GetKeyDown(KeyCode.R))
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene("Main");
         }
     }
 
     IEnumerator SpawnWaves() {
         yield return new WaitForSeconds(startWait);
         while (true) {
+            if (gameOver) {
+                restartText.text = "Press 'R' to Restart";
+                restart = true;
+                break;
+            }
             for (int i = 0; i < hazardCount; ++i) {
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 int randVal = Mathf.FloorToInt(Random.value * 10);
@@ -68,11 +73,6 @@ public class GameController : MonoBehaviour {
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);
-            if (gameOver) {
-                restartText.text = "Press 'R' for Restart";
-                restart = true;
-                break;
-            }
         }
     }
 
