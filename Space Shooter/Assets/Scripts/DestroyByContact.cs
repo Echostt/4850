@@ -39,6 +39,9 @@ public class DestroyByContact : MonoBehaviour {
                 Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
+            } else if (other.CompareTag("MenuPlayer")) {
+                Instantiate(explosion, transform.position, transform.rotation);
+                Destroy(this.gameObject);
             }
         }
     }

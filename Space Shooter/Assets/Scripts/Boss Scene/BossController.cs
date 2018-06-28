@@ -13,9 +13,6 @@ public class BossController : MonoBehaviour {
     public float shotRotateSpeed;
     public int HP;
 
-    private float shotAngleLeft;
-    private float shotAngleRight;
-
     private int randDir;
 
     private void OnTriggerEnter (Collider other) {
@@ -23,16 +20,56 @@ public class BossController : MonoBehaviour {
             Destroy(other.gameObject);
             Instantiate(explosion, other.transform.position, transform.rotation);
             this.HP -= 1;
-            if (this.HP <= 0) {
-                //boss beat condition
-                Debug.Log("Boss beated condition");
+        } else if (other.CompareTag("BigShot")) {
+            Destroy(other.gameObject);
+            Instantiate(explosion, other.transform.position, transform.rotation);
+            this.HP -= 3;
+            StartCoroutine(rockTheShip());
+        }
+        if (this.HP <= 0) {
+            bossDestroyed();
+        }
+    }
+
+    void bossDestroyed () {
+        StopAllCoroutines();
+        this.moveSpeedHorizontal = 0;
+        this.moveSpeedVertical = 0;
+        Vector3 pos;
+        for (int i = 0; i < 5; ++i) {
+            pos = Random.insideUnitSphere;
+            Instantiate(explosion, new Vector3(
+                this.gameObject.transform.position.x + (i),
+                this.gameObject.transform.position.y,
+                this.gameObject.transform.position.z + (i)
+            ), transform.rotation);
+            Instantiate(explosion, pos, transform.rotation);
+        }
+        Destroy(this.gameObject);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<BossSceneController>().bossDeath();
+        return;
+    }
+
+    IEnumerator rockTheShip () {
+        int shipRocks = 4;
+        while (true) {
+            if (shipRocks <= 0) {
+                //done rocking
+                break;
+            } else if (shipRocks % 2 == 0) {
+                //rock left
+                this.gameObject.transform.Rotate(Vector3.up * 15);
+                shipRocks--;
+            } else {
+                //rock right
+                this.gameObject.transform.Rotate(Vector3.down * 15);
+                shipRocks--;
             }
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
     private void Start () {
-        shotAngleLeft = 0;
-        shotAngleRight = 0;
         //pick random direction to move first
         randDir = 1;
         if (Mathf.Round(Random.value) == 1)

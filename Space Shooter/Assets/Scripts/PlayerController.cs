@@ -12,22 +12,37 @@ public class PlayerController : MonoBehaviour {
     public Boundary boundary;
 
     public GameObject shot;
+    public GameObject bigShot;
     public Transform shotSpawn;
     public float fireRate;
+    public bool toFire;
 
     private float nextFire;
 
     void Update() {
-        if (Input.GetButton("Fire1") && Time.time > nextFire) {
+        fireShot();
+    }
+
+    private void Start () {
+        toFire = true;
+    }
+
+    public void fireShot () {
+        if (Input.GetButton("Fire1") && Time.time > nextFire && toFire) {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
             GetComponent<AudioSource>().Play();
         }
     }
 
+    public void fireChargedShot() {
+        Instantiate(bigShot, shotSpawn.position, shotSpawn.rotation);
+        GetComponent<AudioSource>().Play();
+    }
+
     private void OnTriggerEnter (Collider other) {
         if (other.CompareTag("PowerUp")) {
-            StartCoroutine(givePowerUpShot(3, 0));
+            StartCoroutine(givePowerUpShot(3, other.gameObject.GetComponent<PowerUp>().powerUpSelection));
             Destroy(other.gameObject);
         }
     }
@@ -41,6 +56,18 @@ public class PlayerController : MonoBehaviour {
                     yield return null;
                 }
                 this.fireRate *= 50;
+            } break;
+            case 1: {
+                Shader meshShade = this.gameObject.GetComponent<Renderer>().materials[0].shader;
+                this.gameObject.GetComponent<Renderer>().materials[0].shader = Shader.Find("_Color");
+                //this.gameObject.GetComponent<Renderer>().materials[0].SetColor("_Color", Color.blue);
+                float powerUpStart = Time.time;
+                this.gameObject.tag = "MenuPlayer";
+                while (powerUpDuration > Time.time - powerUpStart) {
+                    yield return null;
+                }
+                this.gameObject.tag = "Player";
+                this.gameObject.GetComponent<Renderer>().materials[0].shader = meshShade;
             } break;
         } //end switch(powerUpSelection)
 

@@ -22,8 +22,12 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void OnDestroy () {
-        GameObject.FindWithTag("GameController").GetComponent<GameController>().enemyCount -= 1;
+        GameController gc = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        if (gc != null) {
+            gc.enemiesRemaining -= 1;
+        }
     }
+
     private void Update () {
         //strafe
         if (this.GetComponent<Rigidbody>().transform.position.x <= -6 && this.moveSpeedHorizontal * randDir < 0) {
