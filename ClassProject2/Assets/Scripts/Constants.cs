@@ -9,7 +9,7 @@ public class Constants : MonoBehaviour {
     public const string SceneMenu = "MainMenu";
     // Gun Types   
     public const string Pistol = "Pistol";
-    public const string Shotgun = "ShotGun";
+    public const string Shotgun = "Shotgun";
     public const string AssaultRifle = "AssaultRifle";
     // Robot Types   
     public const string RedRobot = "RedRobot";

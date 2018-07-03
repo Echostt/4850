@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ca550f66baab2b74d9dd5848e1351c63
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - redReticle: {fileID: 21300000, guid: b3daf93d6b200d5458e7fcc17819d7d0, type: 3}
+  - yellowReticle: {fileID: 21300000, guid: 51ba2988aa8374e83a9e36c552ffc337, type: 3}
+  - blueReticle: {fileID: 21300000, guid: fa68d4d43ad9542fd84327ce6edcc434, type: 3}
+  - reticle: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
