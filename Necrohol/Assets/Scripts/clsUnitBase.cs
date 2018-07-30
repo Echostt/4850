@@ -11,6 +11,8 @@ public class clsUnitBase : MonoBehaviour {
     public int atk_base;
     //current attack
     public int atk_current;
+    //is movement still available
+    public bool canMove;
 
     public void MoveUnit(Vector3 destination) {
         this.gameObject.transform.Translate(destination);

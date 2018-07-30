@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114773110765693248}
   m_Layer: 0
   m_Name: Friendly
-  m_TagString: Untagged
+  m_TagString: FriendlyUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movesRemaining: 0
-  hp: 0
-  atk_base: 0
-  atk_current: 0
+  hp: 3
+  atk_base: 1
+  atk_current: 1
+  canMove: 0
 --- !u!135 &135940247014059970
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movesRemaining: 0
-  hp: 0
-  atk_base: 0
-  atk_current: 0
+  hp: 3
+  atk_base: 1
+  atk_current: 1
+  canMove: 0
 --- !u!135 &135965517673325576
 SphereCollider:
   m_ObjectHideFlags: 1
