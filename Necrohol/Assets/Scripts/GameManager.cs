@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
         //load arrays with units
         friendlies = GameObject.FindGameObjectsWithTag("FriendlyUnit");
         enemies = GameObject.FindGameObjectsWithTag("EnemyUnit");
+        playerTurnStart();
     }
 
     //current selected unit attacks target
@@ -35,6 +36,22 @@ public class GameManager : MonoBehaviour {
         clsUnitBase defender = target.GetComponent<clsUnitBase>();
         defender.hp -= attacker.atk_current;
         Debug.Log(attacker + " did " + attacker.atk_current + " damage to " + defender);
+    }
+
+    public void enemyTurnStart () {
+        isPlayerTurn = false;
+        enemyTurnController();
+    }
+
+    public void enemyTurnController () {
+        for(int i = 0; i < enemies.Length; ++i) {
+            enemies[i].transform.Translate(Vector3.back);
+        }
+        enemyTurnEnd();
+    }
+
+    public void enemyTurnEnd () {
+        playerTurnStart();
     }
 
     //create a highlight above the passed gameobject
@@ -54,7 +71,7 @@ public class GameManager : MonoBehaviour {
         cam.transform.SetPositionAndRotation(new Vector3(
             enemies[0].transform.position.x,
             enemies[0].transform.position.y + 4,
-            enemies[0].transform.position.z), Quaternion.Euler(46.46f, 190, 0));
+            enemies[0].transform.position.z + 2), Quaternion.Euler(46.46f, 190, 0));
         //start enemy turn
     }
 
@@ -64,6 +81,7 @@ public class GameManager : MonoBehaviour {
         //move camera to first player unit on the list
         Vector3 unitPos = friendlies[0].transform.position;
         cam.transform.position = new Vector3(unitPos.x, unitPos.y + 4, unitPos.z - 2);
+        cam.transform.rotation = Quaternion.Euler(46.46f, 10, 0);
 
         for (int i = 0; i < enemies.Length; ++i) //reset every unit back to moveable
             friendlies[i].GetComponent<clsUnitBase>().canMove = true;
@@ -77,6 +95,7 @@ public class GameManager : MonoBehaviour {
             if (!isTargetting) {
                 this.selected = selection;
                 highlighter(selected);
+                cam.transform.position = new Vector3(selected.transform.position.x, selected.transform.position.y + 4, selected.transform.position.z - 2);
                 Debug.Log("Selected: " + selection);
                 isTargetting = true;
             } else {
