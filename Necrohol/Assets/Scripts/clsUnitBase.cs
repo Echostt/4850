@@ -14,7 +14,7 @@ public class clsUnitBase : MonoBehaviour {
     //is movement still available
     public bool canMove;
 
-    public void MoveUnit(Vector3 destination) {
+    public void MoveUnit (Vector3 destination) {
         this.gameObject.transform.Translate(destination);
     }
 
