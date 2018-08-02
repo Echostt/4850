@@ -20,6 +20,7 @@ public class clsUnitBase : MonoBehaviour {
 
     public void OnMouseOver () {
         if (Input.GetMouseButton(0)) {
+            Debug.Log("UnitClick: " + this.gameObject);
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().setSelected(this.gameObject);
         }
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
     public bool isRotating180;
+    public bool isMovingToTarget;
+    public Vector3 targetLocation;
 
     private int rotateDegrees = 0;
 	
@@ -18,5 +20,22 @@ public class CameraController : MonoBehaviour {
                 rotateDegrees = 0;
             }
         }
+
+        if (isMovingToTarget) {
+            //this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, targetLocation, Time.deltaTime);
+            //Debug.Log("Moving towards: " + Vector3.Lerp(this.gameObject.transform.position, targetLocation, Time.deltaTime));
+            if (this.gameObject.transform.position == targetLocation)
+                isMovingToTarget = false;
+        }
+
 	}
+
+    public void setAdjustedTargetLocation(Vector3 inTargetLocation) {
+        Vector3 t = inTargetLocation;
+        t.y += 4;
+        t.z += 2;
+        targetLocation = t;
+        this.gameObject.transform.position = t; //temp
+        isMovingToTarget = true;
+    }
 }

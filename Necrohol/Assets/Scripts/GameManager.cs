@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour {
 
     public void enemyTurnStart () {
         isPlayerTurn = false;
+        cam.GetComponent<CameraController>().isMovingToTarget = true;
+        cam.GetComponent<CameraController>().setAdjustedTargetLocation(enemies[0].transform.position);
         StartCoroutine(enemyTurnController());
     }
 
@@ -75,10 +77,7 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < enemies.Count; ++i) {
             //each unit moves toward player, or attacks
             highlighter(enemies[i]);
-            cam.transform.position = new Vector3(
-                enemies[i].transform.position.x, 
-                enemies[i].transform.position.y + 6, 
-                enemies[i].transform.position.z + 4);
+            cam.GetComponent<CameraController>().setAdjustedTargetLocation(enemies[i].gameObject.transform.position);
 
             //find closest enemy
             float distToClosestUnit = 100;
