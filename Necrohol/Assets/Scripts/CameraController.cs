@@ -15,7 +15,6 @@ public class CameraController : MonoBehaviour {
             this.gameObject.transform.Rotate(Vector3.up * 3, Space.World);
             rotateDegrees += 3;
             if (rotateDegrees >= 180) {
-                //Debug.Log("Falsifying the camera");
                 isRotating180 = false;
                 rotateDegrees = 0;
             }

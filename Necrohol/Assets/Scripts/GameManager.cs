@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public GameObject highlightTarget;
     public GameObject cam;
     public bool isAttacking;
+    public CutsceneManager csm;
 
     private bool isTargetting = false;
     private bool isPlayerTurn = false;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour {
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag("EnemyUnit")) {
             enemies.Add(unit);
         }
+        csm.playScene(0);
         playerTurnStart();
     }
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour {
             //remove unit from enemy/friendly list
             removeGameObjectUnit(defender);
             Destroy(highlightTarget);
+            target = null;
         }
     }
 
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour {
             } else if (enemies[i].transform.position.z > closestGO.transform.position.z) {
                 direction = Vector3.back;
             }
-            //Debug.Log("Enemy" + i + " moves " + direction);
+
             RaycastHit[] hit = Physics.RaycastAll(enemies[i].transform.position, direction, 1.0f);
             if (hit.Length > 0) {
                 //hit enemy or move up tile that is collided with
@@ -269,7 +272,7 @@ public class GameManager : MonoBehaviour {
                     dest.y += 1;
                     selected.transform.position = dest;
                     selected.GetComponent<clsUnitBase>().canMove = false;
-                    highlighter(selected);
+                    Destroy(highlight);
                 }
             } else {                                           // ?? Unknown selection ??
                 Debug.Log("Unit to ???");
