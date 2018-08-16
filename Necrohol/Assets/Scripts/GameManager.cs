@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour {
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag("EnemyUnit")) {
             enemies.Add(unit);
         }
+    }
+
+    public void startGame () {
         csm.playScene(0);
         playerTurnStart();
     }

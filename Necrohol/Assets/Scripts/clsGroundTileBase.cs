@@ -14,9 +14,8 @@ public class clsGroundTileBase : MonoBehaviour {
 
     void OnMouseDown () {
         if (uiListener.isUIOverride) {
-            Debug.Log("Cancelled OnMouseDown! A UI element has override this object!");
+            Debug.Log("Cancelled OnMouseDown! A UI element has overriden this object!");
         } else {
-            Debug.Log("Object OnMouseDown");
             if (Input.GetMouseButton(0)) {
                 Debug.Log("TileClick: " + this.gameObject);
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().setSelected(this.gameObject);

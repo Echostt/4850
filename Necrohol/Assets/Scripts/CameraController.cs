@@ -8,9 +8,28 @@ public class CameraController : MonoBehaviour {
     public Vector3 targetLocation;
 
     private int rotateDegrees = 0;
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start () {
+        //end at -13, 7, 5
+        StartCoroutine(moveToStart());
+    }
+
+    private IEnumerator moveToStart () {
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        bool isRunning = true;
+        while (isRunning) {
+            yield return new WaitForSeconds(0.05f);
+            cam.transform.Translate(new Vector3(-0.26f, 0, 0.14f), Space.World);
+            if (cam.transform.position.x <= -13) {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().startGame();
+                isRunning = false;
+            }
+
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (isRotating180) {
             this.gameObject.transform.Rotate(Vector3.up * 3, Space.World);
             rotateDegrees += 3;

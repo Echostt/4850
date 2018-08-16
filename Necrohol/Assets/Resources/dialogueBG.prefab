@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224161492089220870}
   - component: {fileID: 222538875696336498}
   - component: {fileID: 114393221943990496}
+  - component: {fileID: 114108246076203802}
   m_Layer: 5
   m_Name: dialogueBG
   m_TagString: Untagged
@@ -28,6 +29,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114108246076203802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053164091446512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c0bda01e00e3d47be93b23cf7c5033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114393221943990496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.509434, g: 0.14177644, b: 0.14177644, a: 0.39215687}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
