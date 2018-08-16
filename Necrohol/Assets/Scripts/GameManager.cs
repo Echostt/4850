@@ -65,6 +65,10 @@ public class GameManager : MonoBehaviour {
         if (defender.hp <= 0) {
             //remove unit from enemy/friendly list
             removeGameObjectUnit(defender);
+            if (enemies.Count == 0) {
+                Debug.Log("Quit");
+                Application.Quit();
+            }
         }
     }
 

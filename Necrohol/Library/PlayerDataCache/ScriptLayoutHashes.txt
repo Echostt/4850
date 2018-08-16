@@ -1,6 +1,6 @@
-WindowsStandalone
+WebGL
 PlayerPath?
-C:/Users/EchosttTP/Documents/GitHub/4850/Necrohol/Builds/Builds.exe
+C:/Users/EchosttTP/Documents/GitHub/4850/Necrohol/Builds
 SceneListBegin?
 Assets/Scenes/Ontoward.unity
 SceneListEnd?
@@ -16,6 +16,8 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+19d7504294ddf5289fa826d3ea801ac7 Assembly-CSharp.dll:.CutsceneManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIHoverController
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -146,7 +148,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 a80de51b8fa0416969aba1cd6cf103f2 Assembly-CSharp.dll:.clsUnitBase
-b81b9e0bbc7cf528fdef8bd434c382f5 Assembly-CSharp.dll:.GameManager
+95a18f976337687b84fa8ceaa3515ad8 Assembly-CSharp.dll:.GameManager
 472bcd369edbe30b2465734fd5c294f7 Assembly-CSharp.dll:.clsGroundTileBase
 4ba2f46722faab94bac777d10ad398c6 Assembly-CSharp.dll:.CameraController
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIHoverController
